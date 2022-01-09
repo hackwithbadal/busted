@@ -1,7 +1,7 @@
 # **busted**
 _Automated Python code for Brute forcing directories_
 
-### This Program require some dependencys....
+### This Program require some dependencies....
 
         3)import requests
 
