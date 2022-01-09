@@ -1,27 +1,17 @@
 # **busted**
-_Automated Python code for Brute forceing directory_
+_Automated Python code for Brute forceing directorys_
 
-## This Program require some dependencys....
-
-        1)from functools import update_wrapper
-
-        2)from typing import Mapping
+### This Program require some dependencys....
 
         3)import requests
 
 ***
 
-## Install this all modules.....
+### Install this all modules, use command 
 
-### Use Command
-
-        pip install functools
-
-        pip install 
-        
         pip install requests
 ***
 
-## Run the program
+### Run the program
 
-        python busted.py
+        python3 busted.py -u https://exapmle.com:port/ -w /path1/path2/wordlist.txt 
