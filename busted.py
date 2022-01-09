@@ -5,6 +5,31 @@ from functools import update_wrapper
 import sys
 from typing import Mapping
 import requests
+import time
+bar = [
+    " [=>                                         ]",
+    " [  =>                                       ]",
+    " [    =>                                     ]",
+    " [      =>                                   ]",
+    " [        =>                                 ]",
+    " [          =>                               ]",
+    " [            =>                             ]",
+    " [              =>                           ]",
+    " [                =>                         ]",
+    " [                  =>                       ]",
+    " [                    =>                     ]",
+    " [                      =>                   ]",
+    " [                        =>                 ]",
+    " [                          =>               ]",
+    " [                            =>             ]",
+    " [                              =>           ]",
+    " [                                =>         ]",
+    " [                                  =>       ]",
+    " [                                    =>     ]",
+    " [                                      =>   ]",
+    " [                                        => ]",
+    " [                                         =>]",
+]
 def intro():
     print(" ____   ____       ____    _    ____    _    _")  
     print("| __ ) / ___|     | __ )  / \  |  _ \  / \  | |") 
@@ -15,14 +40,14 @@ def intro():
 intro()
 def usage():
     print("Usage:")
-    print("     run the program         = python busted.py -u http://www.example.com/ -w /path1/path2/list.txt")
-    print("     format for txt file     = /directory/.../directory/list.txt")
-    print("     format for URL          = http://example.com:port/ not necesary to give port number (to avoid error simple copy the URL from browser and paste")
+    print("     run the program  = python busted.py -u http://www.example.com/ -w /path1/path2/list.txt")
+    print("     -u(URL)          = http://example.com:port/ not necesary to give port number (to avoid error simple copy the URL from browser and paste")
+    print("     -w(WORDLIST)     = /directory/.../directory/list.txt")
     # print("     format for status code  = .txt ,.php,.xml,.py,.aspx,.do (Any one extention at a time)")
 
 n = len(sys.argv)
 
-if n >= 4:
+if n <= 4:
     print("Insufficient arguments ! use proper command")
     usage()
     exit()
@@ -50,7 +75,6 @@ except:
 lines = []
 with open(path_to_file,'r') as f:
     lines = f.readlines()
-count = 0
 print(f"|=================================================|")
 print(f" Running script   = {sys.argv[0]}")
 print(f" URL              = {URL}(active)")
@@ -58,10 +82,13 @@ print(f" text file        = {path_to_file}")
 print(f" Word in wordlist = {totalWords}")
 print(f" Status Code      = 200,403,404")
 print(f"|=================================================|")
+
+      
+count = 0
 for line in lines:
+    print(bar[count % len(bar)], end="\r")
     count += 1
-    Update_URL = URL + line
-    print("Trying URL ->",Update_URL)
+    Update_URL = URL + line 
     try:
         response = requests.head(Update_URL)    
         if response.status_code == 200:
@@ -73,6 +100,5 @@ for line in lines:
             pass
     except requests.ConnectionError as e:
         print("Connection to Website Fail\nPlease Copy URL from Browser and paste again ",e,'\n')
-        usage()
 else:
     print('Process completed !')

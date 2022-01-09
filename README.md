@@ -1,5 +1,5 @@
 # **busted**
-_Automated Python code for Brute forceing directorys_
+_Automated Python code for Brute forcing directories_
 
 ### This Program require some dependencys....
 
