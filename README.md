@@ -1,16 +1,27 @@
-"#busted" 
-Automated Python code for Brute forceing directory
-#This Program require some dependencys
-1)from functools import update_wrapper
-2)from typing import Mapping
-3)import requests
+# **busted**
+_Automated Python code for Brute forceing directory_
 
+## This Program require some dependencys....
 
-#import this all modules
-#use Command
-pip install functools
-pip install typing
-pip install requests
- 
-#run the program
-python busted.py
+        1)from functools import update_wrapper
+
+        2)from typing import Mapping
+
+        3)import requests
+
+***
+
+## Install this all modules.....
+
+### Use Command
+
+        pip install functools
+
+        pip install 
+        
+        pip install requests
+***
+
+## Run the program
+
+        python busted.py
