@@ -43,9 +43,11 @@ def usage():
     print("     run the program  = python busted.py -u http://www.example.com/ -w /path1/path2/list.txt")
     print("     -u(URL)          = http://example.com:port/ not necesary to give port number (to avoid error simple copy the URL from browser and paste")
     print("     -w(WORDLIST)     = /directory/.../directory/list.txt")
-    # print("     format for status code  = .txt ,.php,.xml,.py,.aspx,.do (Any one extention at a time)")
 
 n = len(sys.argv)
+
+# python3 busted.py -u URL -w WORDLIST -e EXTENTION
+#               0    1  2   3     4     5     6
 
 if n <= 4:
     print("Insufficient arguments ! use proper command")
@@ -53,6 +55,7 @@ if n <= 4:
     exit()
 URL = sys.argv[2]
 path_to_file = sys.argv[4]
+
 
 # test connection with website
 response = requests.head(URL)    
@@ -63,6 +66,7 @@ else:
     usage()
     exit()
 
+# checking and opening the wordlist
 try:
     with open(path_to_file,'r') as f:
         data = f.read()
@@ -72,6 +76,11 @@ except:
     print('Invalid wordlist path !')
     usage()
     exit()
+
+# extentions
+
+
+
 lines = []
 with open(path_to_file,'r') as f:
     lines = f.readlines()
@@ -86,9 +95,10 @@ print(f"|=================================================|")
       
 count = 0
 for line in lines:
-    print(bar[count % len(bar)], end="\r")
+    # print(bar[count % len(bar)], end="\r")
     count += 1
-    Update_URL = URL + line 
+    Update_URL = URL + line
+    print("Trying ->",Update_URL)
     try:
         response = requests.head(Update_URL)    
         if response.status_code == 200:
