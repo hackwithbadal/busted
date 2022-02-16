@@ -77,10 +77,6 @@ except:
     usage()
     exit()
 
-# extentions
-
-
-
 lines = []
 with open(path_to_file,'r') as f:
     lines = f.readlines()
@@ -95,10 +91,9 @@ print(f"|=================================================|")
       
 count = 0
 for line in lines:
-    # print(bar[count % len(bar)], end="\r")
+    print(bar[count % len(bar)], end="\r")
     count += 1
     Update_URL = URL + line
-    print("Trying ->",Update_URL)
     try:
         response = requests.head(Update_URL)    
         if response.status_code == 200:
@@ -106,7 +101,6 @@ for line in lines:
         elif response.status_code == 403:
             print('Found but Hidden ! | status code = 403 | url=',Update_URL)
         else:
-            # print("404 Not Found !")
             pass
     except requests.ConnectionError as e:
         print("Connection to Website Fail\nPlease Copy URL from Browser and paste again ",e,'\n')
